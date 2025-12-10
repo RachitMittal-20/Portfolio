@@ -8,6 +8,35 @@ window.addEventListener('scroll', function() {
   }
 });
 
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.querySelector('.hamburger');
+  const navRight = document.querySelector('.right');
+  const navLinks = document.querySelectorAll('.right a');
+  
+  // Toggle menu
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    navRight.classList.toggle('active');
+  });
+  
+  // Close menu when clicking on a link
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('active');
+      navRight.classList.remove('active');
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!hamburger.contains(event.target) && !navRight.contains(event.target)) {
+      hamburger.classList.remove('active');
+      navRight.classList.remove('active');
+    }
+  });
+});
+
 // Active section highlighting
 document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('section, div[id]');
