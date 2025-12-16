@@ -133,8 +133,21 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(function(error) {
         console.log('FAILED...', error);
         
-        // Show error message
-        formStatus.textContent = '✗ Failed to send message. Please try again or email me directly.';
+        // Show detailed error message
+        let errorMessage = '✗ Failed to send message. ';
+        
+        if (error.text) {
+          console.error('Error details:', error.text);
+          if (error.text.includes('credentials')) {
+            errorMessage += 'Email service not properly configured. ';
+          } else if (error.text.includes('unauthorized')) {
+            errorMessage += 'Authorization issue with email service. ';
+          }
+        }
+        
+        errorMessage += 'Please email me directly at rachitmittalxc@gmail.com';
+        
+        formStatus.textContent = errorMessage;
         formStatus.style.color = '#ef4444';
         formStatus.style.display = 'block';
         
