@@ -144,6 +144,9 @@ nav ul li a.active::after {
     display: flex;
     cursor: pointer;
     padding: 0 15px;
+    text-decoration: none;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 500;
 }
 .worktextbox:hover{
     background-color: rgb(255, 255, 255);
@@ -366,11 +369,141 @@ nav ul li a.active::after {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     gap: 10px;
 }
 .title1{
     color: rgb(247, 40, 40);
+}
+
+/* Projects Container */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Project Card */
+.project-card {
+    background-color: rgb(30, 30, 30);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 30px rgba(247, 40, 40, 0.2);
+}
+
+/* Project Image */
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background-color: rgb(40, 40, 40);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+/* Project Overlay */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(247, 40, 40, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.project-icon:hover {
+    background-color: rgb(247, 40, 40);
+    transform: scale(1.1);
+}
+
+/* Project Content */
+.project-content {
+    padding: 30px;
+}
+
+.project-title {
+    color: rgb(247, 40, 40);
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-family: "Sansation", sans-serif;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.project-description {
+    color: rgb(178, 178, 178);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-family: 'Inter', Arial, sans-serif;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Project Tags */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project-tag {
+    background-color: rgb(40, 40, 40);
+    color: rgb(255, 255, 255);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: "Roboto Mono", monospace;
+    letter-spacing: 0.5px;
+    border: 1px solid rgb(60, 60, 60);
+    transition: all 0.3s ease;
+}
+
+.project-tag:hover {
+    background-color: rgb(247, 40, 40);
+    border-color: rgb(247, 40, 40);
+    transform: translateY(-2px);
 }
 
 .contactbox{
@@ -679,6 +812,18 @@ html{
     transform: rotate(-45deg) translate(7px, -6px);
 }
 
+/* Form status message */
+.form-status {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: rgba(16, 185, 129, 0.1);
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
 /* Desktop Layout for Contact Section */
 @media (min-width: 1024px) {
     .about-content {
@@ -749,6 +894,19 @@ html{
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 10px 0;
+    }
+    
+    .project-image {
+        height: 220px;
+    }
+    
+    .project-content {
+        padding: 20px;
+    }
     #navbar {
         padding: 15px 5%;
     }

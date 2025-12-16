@@ -6,6 +6,8 @@
   <title>Rachit Mittal - Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -36,7 +38,7 @@
       <h2>Rachit Mittal</h2>
       <p>Creative Developer & Designer crafting exceptional digital experiences with passion and precision.</p>
       <div class="textboxes">
-        <button class="worktextbox">My Work</button>
+        <a href="#work" class="worktextbox">My Work</a>
         <button class="CV">Download CV</button>
       </div>
       <div class="social-icons">
@@ -93,6 +95,33 @@
   <section id="work"></section>
   <div class="work-section">
     <div class="worktitle">Featured <span class="title1">Work</span></div>
+    
+    <div class="projects-container">
+      <!-- Cafe Finder Project -->
+      <div class="project-card">
+        <div class="project-image">
+          <img src="cafe-finder-thumbnail.png" alt="Cafe Finder Project">
+          <div class="project-overlay">
+            <a href="https://cafe-finder-opvx.onrender.com/" target="_blank" class="project-icon" title="View Live">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+            <a href="https://github.com/RachitMittal-20/cafe_finder" target="_blank" class="project-icon" title="View Code">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Cafe Finder</h3>
+          <p class="project-description">Find your perfect cafe with curated coffee spots near you, filtered your way. From cozy corners to vibrant lounges.</p>
+          <div class="project-tags">
+            <span class="project-tag">HTML</span>
+            <span class="project-tag">CSS</span>
+            <span class="project-tag">JavaScript</span>
+            <span class="project-tag">Maps API</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <section id="contact"></section>
@@ -141,30 +170,31 @@
       <div class="contact-right">
         <div class="messageform">
           <h1>Send a Message</h1>
-          <form>
+          <form id="contact-form">
             <div class="form-row">
               <div class="form-group">
                 <label for="fname">First Name</label>
-                <input type="text" id="fname" placeholder="John" />
+                <input type="text" id="fname" name="from_fname" placeholder="John" required />
               </div>
               <div class="form-group">
                 <label for="lname">Last Name</label>
-                <input type="text" id="lname" placeholder="Doe" />
+                <input type="text" id="lname" name="from_lname" placeholder="Doe" required />
               </div>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" placeholder="john.doe@example.com" />
+              <input type="email" id="email" name="from_email" placeholder="john.doe@example.com" required />
             </div>
             <div class="form-group">
               <label for="subject">Subject</label>
-              <input type="text" id="subject" placeholder="Project Inquiry" />
+              <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required />
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" placeholder="Tell me about your project..."></textarea>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
             </div>
             <button type="submit" class="send-btn">Send Message</button>
+            <div id="form-status" class="form-status"></div>
           </form>
           <p class="response-time">Typically respond within <span>24 hours</span></p>
         </div>

@@ -81,3 +81,67 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', highlightNavigation);
   window.addEventListener('load', highlightNavigation);
 });
+
+// EmailJS Configuration
+(function() {
+  // Initialize EmailJS with your public key
+  emailjs.init("JnjMCI-wRCWYbHwhp"); // EmailJS public key
+})();
+
+// Contact Form Submission
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      const submitBtn = contactForm.querySelector('.send-btn');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      formStatus.textContent = '';
+      
+      // Send email using EmailJS
+      emailjs.sendForm(
+        'service_qmsyxcv',    // EmailJS service ID
+        'template_yxzqzg3',   // EmailJS template ID
+        contactForm
+      )
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        
+        // Show success message
+        formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+        formStatus.style.color = '#10b981';
+        formStatus.style.display = 'block';
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Reset button
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          formStatus.style.display = 'none';
+        }, 5000);
+      })
+      .catch(function(error) {
+        console.log('FAILED...', error);
+        
+        // Show error message
+        formStatus.textContent = '✗ Failed to send message. Please try again or email me directly.';
+        formStatus.style.color = '#ef4444';
+        formStatus.style.display = 'block';
+        
+        // Reset button
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+});
